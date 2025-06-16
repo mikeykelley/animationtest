@@ -1,87 +1,55 @@
-body {
+.impact-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 2rem;
+  position: relative;
   font-family: sans-serif;
-  margin: 0;
-  padding: 2rem;
-  background: #f9f9f9;
 }
 
-.hero-section {
+.customer {
+  position: relative;
   text-align: center;
 }
 
-.headline {
-  font-size: 2rem;
-  margin-bottom: 2rem;
-}
-
-.animation-container {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-}
-
-.chaos, .calm {
-  width: 40%;
-  min-width: 250px;
+.icon {
+  font-size: 3rem;
+  z-index: 10;
   position: relative;
 }
 
-.parcels {
-  position: relative;
-  height: 200px;
-  background: #eee;
-  margin: 1rem auto;
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.parcel {
-  width: 40px;
-  height: 40px;
-  background: #ffc107;
-  border-radius: 4px;
+.thread {
   position: absolute;
-  top: -50px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 300px;
 }
 
-/* Chaotic animation */
-.chaos1 {
-  left: 10%;
-  animation: fallChaos 3s infinite;
-}
-.chaos2 {
-  left: 50%;
-  animation: fallChaos 2.5s infinite 0.5s;
-}
-.chaos3 {
-  left: 80%;
-  animation: fallChaos 2.8s infinite 1s;
+.thread-left {
+  left: -320px;
+  text-align: right;
 }
 
-@keyframes fallChaos {
-  0% { top: -50px; transform: rotate(0); }
-  50% { top: 100px; transform: rotate(180deg); }
-  100% { top: 200px; transform: rotate(360deg); }
+.thread-right {
+  right: -320px;
+  text-align: left;
 }
 
-/* Calm, smooth animation */
-.smooth1 {
-  top: 0;
-  left: 10%;
-  animation: moveSmooth 3s infinite;
-}
-.smooth2 {
-  top: 20px;
-  left: 10%;
-  animation: moveSmooth 3s infinite 0.5s;
-}
-.smooth3 {
-  top: 40px;
-  left: 10%;
-  animation: moveSmooth 3s infinite 1s;
+.leak, .gain {
+  margin: 1rem 0;
+  opacity: 0;
+  animation: fadeInUp 1s forwards;
 }
 
-@keyframes moveSmooth {
-  0% { left: 10%; }
-  100% { left: 80%; }
+.leak:nth-child(1) { animation-delay: 0.3s; }
+.leak:nth-child(2) { animation-delay: 0.6s; }
+.leak:nth-child(3) { animation-delay: 0.9s; }
+
+.gain:nth-child(1) { animation-delay: 1.2s; }
+.gain:nth-child(2) { animation-delay: 1.5s; }
+.gain:nth-child(3) { animation-delay: 1.8s; }
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
