@@ -1,98 +1,80 @@
-body {
-  font-family: 'Segoe UI', sans-serif;
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
   background: #f8f9fa;
+  color: #212529;
 }
 
-.container {
+.main {
   display: flex;
-  flex-direction: row;
-  padding: 2rem;
   max-width: 1200px;
-  margin: auto;
-  gap: 4rem;
+  margin: 0 auto;
+  height: 100vh;
 }
 
-.calculator {
-  flex: 2;
-  background: white;
-  padding: 2rem;
-  border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+.left {
+  flex: 0 0 65%;
+  padding: 80px 40px;
 }
 
-.calculator h1 {
-  font-size: 1.75rem;
+.left h1 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.left p {
+  font-size: 1rem;
   margin-bottom: 1rem;
+  line-height: 1.6;
 }
 
-label {
-  display: block;
-  margin-top: 1rem;
-  font-weight: bold;
+.right {
+  flex: 0 0 35%;
+  position: relative;
+  padding: 80px 20px;
 }
 
-input[type="range"],
-input[type="number"],
-select {
-  width: 100%;
-  margin-top: 0.5rem;
-  padding: 0.5rem;
+.snake {
+  position: sticky;
+  top: 80px;
+}
+
+.snake-point {
+  position: relative;
+  background: white;
+  padding: 16px 20px 16px 40px;
   border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
+  border: 2px solid #dee2e6;
+  margin-bottom: 40px;
+  font-size: 0.95rem;
+  color: #495057;
 }
 
-button {
-  margin-top: 1.5rem;
-  padding: 0.75rem;
-  width: 100%;
-  font-size: 1rem;
-  background-color: #0052cc;
-  color: white;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: background 0.2s ease;
+/* Vertical connector line */
+.snake::before {
+  content: '';
+  position: absolute;
+  left: 26px;
+  top: 8px;
+  bottom: 0;
+  width: 4px;
+  background: #dee2e6;
 }
 
-button:hover {
-  background-color: #003d99;
-}
-
-.results {
-  margin-top: 2rem;
-  background: #f1f5ff;
-  padding: 1rem;
-  border-radius: 12px;
-  box-shadow: inset 0 0 5px rgba(0,0,0,0.05);
-}
-
-.hidden {
-  display: none;
-}
-
-/* Snake Progress Tracker */
-.snake-tracker {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  gap: 1.5rem;
-  padding-top: 2rem;
-}
-
-.step {
-  background: #e2e6ea;
-  padding: 1rem;
-  border-radius: 20px;
-  border-left: 8px solid #ccc;
-  transition: all 0.3s ease;
-}
-
-.step.active {
-  background: #d1e7ff;
-  border-left-color: #0052cc;
-  font-weight: bold;
+/* Circle markers */
+.snake-point::before {
+  content: '';
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 12px;
+  background: #283CFF;
+  border-radius: 50%;
 }
