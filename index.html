@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Operational Cost & ROI Calculator</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="calculator-container">
+    <!-- Left Side: Cost Savings and Revenue Impact -->
+    <div class="calculator current-logic">
+      <h2>How much could you save with Zenstores?</h2>
+
+      <label for="orders">Monthly Orders: <span id="orderValue">250</span></label>
+      <input type="range" id="orders" min="250" max="25000" value="250" step="250" />
+
+      <label for="aov">Average Order Value (£):</label>
+      <input type="number" id="aov" value="50" min="0" />
+
+      <div class="result">
+        <p><strong>Estimated Monthly Savings:</strong></p>
+        <p>❌ Preventing Fulfilment Errors: <strong>£<span id="errorsCost">0</span></strong></p>
+        <p>🕒 Fulfilment Automations: <strong>£<span id="timeCost">0</span></strong></p>
+        <p>📈 Conversion Rate Uplift: <strong>£<span id="missedRevenue">0</span></strong></p>
+        <hr />
+        <h3>Total Savings: £<span id="total">0</span></h3>
+      </div>
+
+      <div class="assumptions">
+        <details>
+          <summary>What's this based on?</summary>
+          <ul>
+            <li>~0.5% of orders contain packing errors or ship to unvalidated addresses</li>
+            <li>Assumes orders takes 3 minutes to process manually</li>
+            <li>10% uplift on assumed 3% baseline conversion rate</li>
+          </ul>
+        </details>
+      </div>
+    </div>
+
+    <!-- Right Side: Pricing and ROI -->
+    <div class="calculator zenstores-pricing">
+      <h2>ROI Calculator</h2>
+
+      <div id="personaMessage" class="persona-box"></div>
+
+      <p>Based on your monthly order volume:</p>
+      <p><strong>Pricing starts from: £<span id="zenstoresPrice">0</span></strong></p>
+
+      <div class="roi-box">
+        <h3>Estimated ROI</h3>
+        <p><strong><span id="roiMultiplier">0.0x</span></strong> return on investment</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

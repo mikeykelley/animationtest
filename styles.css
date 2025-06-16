@@ -1,0 +1,144 @@
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #fffaf9;
+  color: #052424;
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+  margin: 0;
+  min-height: 100vh;
+}
+
+.calculator-container {
+  display: flex;
+  gap: 40px;
+  max-width: 900px;
+  width: 100%;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px 0;
+  box-sizing: border-box;
+}
+
+.calculator {
+  border: 2px solid #FFBEAF;
+  border-radius: 16px;
+  padding: 32px 24px;
+  width: 420px;
+  background-color: #fff;
+  box-shadow: 0 6px 16px rgba(5, 36, 36, 0.12);
+  box-sizing: border-box;
+}
+
+h2 {
+  color: #283CFF;
+  margin-bottom: 20px;
+  font-weight: 700;
+  font-size: 24px;
+}
+
+label {
+  display: block;
+  margin-top: 16px;
+  margin-bottom: 6px;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+input[type="range"],
+input[type="number"] {
+  width: 100%;
+  margin-bottom: 16px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 18px;
+  box-sizing: border-box;
+}
+
+.result {
+  margin-top: 24px;
+  background-color: #FFBEAF22;
+  padding: 16px;
+  border-radius: 12px;
+  text-align: left;
+  font-size: 16px;
+}
+
+.result p {
+  margin: 6px 0;
+}
+
+.result h3 {
+  margin-top: 12px;
+  color: #283CFF;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.assumptions {
+  margin-top: 16px;
+  font-size: 18px;
+  color: #333;
+}
+
+.assumptions summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: #283CFF;
+  outline: none;
+}
+
+.assumptions ul {
+  margin: 8px 0 0 16px;
+  padding: 0;
+  list-style: disc;
+  line-height: 1.4;
+}
+
+/* Zenstores Pricing & ROI panel styling with green theme */
+.zenstores-pricing {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 32px 24px;
+  font-size: 18px;
+}
+
+/* New ROI box styling */
+.roi-box {
+  background-color: #E6F4EA; /* Light green background */
+  border: 2px solid #80CFA9; /* Green border */
+  border-radius: 12px;
+  padding: 16px;
+  margin-top: 24px;
+  font-size: 18px;
+  color: #052424;
+  box-shadow: 0 4px 12px rgba(5, 36, 36, 0.1);
+}
+
+.roi-box h3 {
+  margin-top: 0;
+  color: #0B8457; /* Deeper green for heading */
+  font-size: 22px;
+  font-weight: 700;
+}
+
+/* Make the ROI multiplier number bigger */
+#roiMultiplier {
+  font-size: 32px;
+  font-weight: 800;
+  color: #0B8457; /* Optional: same green as heading */
+}
+
+/* Persona message box */
+.persona-box {
+  background-color: #FFF5D6; /* Soft yellow background */
+  border: 2px solid #FFD580; /* Golden border */
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 20px;
+  font-size: 18px;
+  color: #5A4000;
+  box-shadow: 0 4px 12px rgba(90, 64, 0, 0.1);
+}
