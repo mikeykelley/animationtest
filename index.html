@@ -1,30 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF‑8" />
-  <meta name="viewport" content="width=device‑width, initial‑scale=1.0" />
-  <title>Zenstores Tracker & Calculator</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zenstores Calculator</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="main">
-    <section class="left">
-      <h1>Why should you care?</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum.</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+  <div class="main-layout">
+    <section class="calculator-container">
+      <div class="calculator current-logic">
+        <h2>Why should you care?</h2>
+
+        <div id="interactive-area">
+          <!-- Category -->
+          <div class="business-category">
+            <p>Select your business category:</p>
+            <div class="category-buttons">
+              <button data-category="Fashion & Apparel" class="category-btn selected">👗<br /><span>Fashion & Apparel</span></button>
+              <button data-category="Food & Drink" class="category-btn">🍔<br /><span>Food & Drink</span></button>
+              <button data-category="Health & Beauty" class="category-btn">💄<br /><span>Health & Beauty</span></button>
+              <button data-category="Other" class="category-btn">🏡<br /><span>Other</span></button>
+            </div>
+          </div>
+
+          <!-- Monthly orders -->
+          <label for="orders">Monthly Shipment Volume: <span id="orderValue">250</span></label>
+          <input type="range" id="orders" min="0" max="40" step="1" />
+        </div>
+
+        <hr class="divider" />
+
+        <h3>The hidden hurdles holding back growth:</h3>
+        <ul id="challengesContainer" class="challenges-list"></ul>
+
+        <div id="size-of-problem" class="revenue-uplift-box" data-value="0">
+          <p class="uplift-label">Estimated yearly missed revenue</p>
+          <div class="uplift-amount">
+            <svg class="arrow-icon" width="24" height="24" viewBox="0 0 24 24">
+              <path d="M6 6L18 18M18 18H10M18 18V10" stroke="#C41E3A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="amount">£0</span>
+          </div>
+        </div>
+
+        <hr class="divider" />
+
+        <h3 id="quirksHeading">Your quirks</h3>
+        <ul id="quirksContainer" class="quirks-list"></ul>
+
+        <div id="similarBusinesses" class="similar-businesses-container"></div>
+      </div>
     </section>
 
-    <aside class="right">
-      <div class="snake">
-        <div class="snake‑point">Step 1: Discover</div>
-        <div class="snake‑point">Step 2: Analyse</div>
-        <div class="snake‑point">Step 3: Simplify</div>
-        <div class="snake‑point">Step 4: Scale</div>
+    <aside class="scroll-snake">
+      <div class="snake-track">
+        <div class="snake-path"></div>
+        <div class="snake-ball"></div>
       </div>
     </aside>
   </div>
 
   <script src="script.js"></script>
+  <script>
+    window.addEventListener("scroll", () => {
+      const snakeBall = document.querySelector(".snake-ball");
+      const snakePath = document.querySelector(".snake-path");
+      const scrollTop = window.scrollY;
+      const docHeight = document.body.scrollHeight - window.innerHeight;
+      const scrollPercent = scrollTop / docHeight;
+      const pathHeight = snakePath.offsetHeight - snakeBall.offsetHeight;
+      snakeBall.style.top = `${scrollPercent * pathHeight}px`;
+    });
+  </script>
 </body>
 </html>
