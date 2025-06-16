@@ -1,21 +1,290 @@
-<div class="impact-section">
-  <div class="customer">
-    <div class="icon">👤</div>
-    <div class="thread thread-left">
-      <div class="leak">
-        🛠️ Manual fulfilment — <span class="amount" data-value="4500">£4,500</span>
-      </div>
-      <div class="leak">
-        📦 Pick & Pack errors — <span class="amount" data-value="5625">£5,625</span>
-      </div>
-      <div class="leak">
-        ❌ Poor delivery experience — <span class="amount" data-value="18750">£18,750</span>
-      </div>
-    </div>
-    <div class="thread thread-right">
-      <div class="gain">✅ Unified workflow</div>
-      <div class="gain">✅ 99% accuracy</div>
-      <div class="gain">✅ Higher conversion</div>
-    </div>
-  </div>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Zenstores Calculator with Progress Tracker</title>
+  <style>
+    /* ===== Colors ===== */
+    :root {
+      --zen-pink-light: #FFEFEB;
+      --zen-pink: #FFDFD7;
+      --zen-pink-standard: #FFBEAF;
+      --zen-black: #052424;
+      --zen-blue: #283CFF;
+    }
+
+    /* ===== Base styles ===== */
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--zen-pink-light);
+      color: var(--zen-black);
+      min-height: 100vh;
+      padding: 40px 20px;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    /* ===== Container flex layout ===== */
+    .main-container {
+      max-width: 1200px;
+      width: 100%;
+      display: flex;
+      gap: 40px;
+    }
+
+    /* Left side - calculator (65-70%) */
+    .calculator-container {
+      flex: 0 0 68%;
+      background: white;
+      border-radius: 12px;
+      padding: 24px 32px;
+      box-shadow: 0 12px 30px rgba(5, 36, 36, 0.15);
+      box-sizing: border-box;
+    }
+
+    .calculator h2 {
+      font-weight: 700;
+      font-size: 2rem;
+      margin-bottom: 12px;
+      color: var(--zen-black);
+    }
+
+    /* Existing calculator styles */
+    .business-category p {
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .category-buttons {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .category-btn {
+      box-sizing: border-box;
+      border: 2px solid var(--zen-pink-standard);
+      background: var(--zen-pink-light);
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 10px 8px;
+      border-radius: 12px;
+      cursor: pointer;
+      user-select: none;
+      width: 110px;
+      text-align: center;
+      transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, outline-color 0.3s ease;
+      outline: 2px solid transparent;
+      outline-offset: 0;
+      color: var(--zen-black);
+    }
+
+    .category-btn span {
+      font-size: 0.9rem;
+      display: block;
+      margin-top: 4px;
+    }
+
+    .category-btn.selected {
+      background-color: var(--zen-blue);
+      color: white;
+      border-color: var(--zen-blue);
+      outline-color: rgba(40, 60, 255, 0.7);
+      outline-offset: 4px;
+      box-shadow: 0 0 8px 2px rgba(40, 60, 255, 0.6);
+    }
+
+    .category-btn:hover:not(.selected) {
+      background-color: var(--zen-pink-standard);
+      border-color: var(--zen-pink-standard);
+      color: var(--zen-black);
+    }
+
+    #interactive-area {
+      padding: 10px;
+      border-radius: 8px;
+      background: white;
+      box-sizing: border-box;
+    }
+
+    #orders {
+      width: 100%;
+      height: 6px;
+      background: var(--zen-pink-standard);
+      border-radius: 3px;
+      outline: none;
+      cursor: pointer;
+      margin-bottom: 1rem;
+      -webkit-appearance: none;
+    }
+
+    #orders::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 24px;
+      height: 24px;
+      background: var(--zen-blue);
+      border-radius: 50%;
+      cursor: pointer;
+      border: none;
+      box-shadow: 0 0 8px rgba(40, 60, 255, 0.6);
+      margin-top: -1px;
+      transition: background-color 0.3s ease;
+    }
+
+    #orders:hover::-webkit-slider-thumb {
+      background-color: #1f33cc;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid var(--zen-pink-standard);
+      margin: 24px 0;
+    }
+
+    .challenges-list,
+    .quirks-list {
+      list-style: none;
+      padding-left: 0;
+      margin-top: 0;
+      margin-bottom: 20px;
+    }
+
+    .challenges-list li {
+      background: var(--zen-pink-light);
+      padding: 8px 12px;
+      border-radius: 8px;
+      margin-bottom: 6px;
+      font-size: 0.95rem;
+      border-left: 4px solid var(--zen-pink-standard);
+    }
+
+    .quirks-list li {
+      background: var(--zen-pink-light);
+      padding: 8px 12px;
+      border-radius: 8px;
+      margin-bottom: 2px;
+      font-size: 0.95rem;
+      border-left: 4px solid var(--zen-blue);
+    }
+
+    .revenue-uplift-box {
+      background: var(--zen-pink);
+      padding: 20px;
+      border-radius: 12px;
+      margin: 20px 0;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(197, 30, 58, 0.2);
+    }
+
+    .uplift-label {
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 12px;
+      color: var(--zen-black);
+    }
+
+    .uplift-amount {
+      font-weight: 700;
+      font-size: 1.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: #C41E3A;
+    }
+
+    /* Arrow icon */
+    .arrow-icon {
+      flex-shrink: 0;
+    }
+
+    /* ===== Right side: progress tracker ===== */
+    .progress-tracker {
+      flex: 0 0 32%;
+      background: white;
+      border-radius: 12px;
+      padding: 20px 24px;
+      box-shadow: 0 12px 30px rgba(5, 36, 36, 0.15);
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      position: relative;
+    }
+
+    .progress-tracker h3 {
+      margin-top: 0;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--zen-black);
+      text-align: center;
+    }
+
+    /* Snake blocks container */
+    .snake-container {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      position: relative;
+    }
+
+    /* Each snake block */
+    .snake-block {
+      background: var(--zen-pink-light);
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-size: 0.9rem;
+      color: var(--zen-black);
+      width: 100%;
+      box-sizing: border-box;
+      position: relative;
+      max-width: 100%;
+      /* We'll offset blocks to create snake effect */
+    }
+
+    /* Alternate snake block position: even blocks shift right */
+    .snake-block:nth-child(even) {
+      margin-left: 20px;
+    }
+
+    /* Add a connecting line (vertical) on the left side */
+    .snake-container::before {
+      content: "";
+      position: absolute;
+      top: 10px;
+      bottom: 10px;
+      left: 10px;
+      width: 4px;
+      background: var(--zen-pink-standard);
+      border-radius: 2px;
+      z-index: 0;
+    }
+
+    /* Add a small circle to each block aligned to the left line */
+    .snake-block::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 10px;
+      transform: translateY(-50%);
+      width: 16px;
+      height: 16px;
+      background: var(--zen-pink);
+      border-radius: 50%;
+      border: 3px solid var(--zen-pink-standard);
+      z-index: 1;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="main-container">
+    <!-- Left side: Calculator -->
+    <section class="calculator-container">
+      <div class="calculator current-logic">
+       
